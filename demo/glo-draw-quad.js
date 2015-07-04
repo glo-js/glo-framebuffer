@@ -15,10 +15,15 @@ function screenAlignedQuad (gl) {
 
   var shader = createShader(gl, { vertex: vert, fragment: frag })
 
-  return function drawQuad () {
+  function draw () {
     shader.bind()
     mesh.bind(shader)
     mesh.draw(gl.TRIANGLES)
     mesh.unbind(shader)
+  }
+
+  return {
+    shader: shader,
+    draw: draw
   }
 }
