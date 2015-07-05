@@ -16,12 +16,11 @@ var demo = require('glo-demo-primitive')(torus, {
 var gl = demo.gl
 // var fbo = require('gl-fbo')(gl, [gl.drawingBufferWidth, gl.drawingBufferHeight])
 
-var Framebuffer = require('../lib/Framebuffer')
-var shape = [gl.drawingBufferWidth, gl.drawingBufferHeight]
-var fbo = new Framebuffer(gl, shape, {
-  colors: [ Texture2D(gl, null, shape) ],
-  depth: true,
-  stencil: true
+var Framebuffer = require('../2d')
+var fbo = new Framebuffer(gl, [gl.drawingBufferWidth, gl.drawingBufferHeight], {
+  color: 1,
+  depth: false,
+  stencil: false
 })
 var quad = require('./glo-draw-quad')(gl)
 
@@ -35,21 +34,22 @@ function draw (dt) {
   gl.clearColor(0, 0, 0, 1)
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
   demo.render(dt)
-  gl.bindFramebuffer(gl.FRAMEBUFFER, null)
-  gl.disable(gl.CULL_FACE)
+  
 
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null)
   gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeighti)
-  gl.enable(gl.DEPTH_TEST)
+  gl.disable(gl.CULL_FACE)
+  gl.disable(gl.DEPTH_TEST)
   gl.depthFunc(gl.LEQUAL)
   gl.clearDepth(1)
   gl.clearColor(0, 0, 1, 1)
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
   gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight)
   
-  fbo.depth.bind()
+  fbo.color[0].bind()
   quad.shader.bind()
-  quad.shader.uniforms.near(1)
-  quad.shader.uniforms.far(40)
+  // quad.shader.uniforms.near(1)
+  // quad.shader.uniforms.far(40)
   quad.draw()
 }
 

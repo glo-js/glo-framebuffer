@@ -11,5 +11,6 @@ float linearDepth(float z, float near, float far) {
 
 void main() {
   vec4 texColor = texture2D(iChannel0, vUv);
-  gl_FragColor = vec4(vec3(linearDepth(texColor.r, near, far)), 1.0);
+  // gl_FragColor = vec4(vec3(linearDepth(texColor.r, near, far)), 1.0);
+  gl_FragColor = texColor;
 }

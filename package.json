@@ -1,7 +1,6 @@
 {
-  "name": "glo-render-target",
+  "name": "glo-framebuffer",
   "version": "0.0.0",
-  "private": true,
   "description": "a frame buffer interface for WebGL",
   "main": "index.js",
   "license": "MIT",
@@ -12,7 +11,10 @@
   },
   "dependencies": {
     "array-equal": "^1.0.0",
-    "gl-extension": "^1.0.1"
+    "dprop": "^1.0.0",
+    "gl-extension": "^1.0.1",
+    "inherit-class": "^1.0.1",
+    "new-array": "^1.0.0"
   },
   "devDependencies": {
     "budo": "^4.1.0",
@@ -44,10 +46,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/glo-js/glo-render-target.git"
+    "url": "git://github.com/glo-js/glo-framebuffer.git"
   },
-  "homepage": "https://github.com/glo-js/glo-render-target",
+  "homepage": "https://github.com/glo-js/glo-framebuffer",
   "bugs": {
-    "url": "https://github.com/glo-js/glo-render-target/issues"
+    "url": "https://github.com/glo-js/glo-framebuffer/issues"
   }
 }
